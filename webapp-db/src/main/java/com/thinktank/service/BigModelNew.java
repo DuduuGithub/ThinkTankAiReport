@@ -58,7 +58,6 @@ public class BigModelNew extends WebSocketListener {
               System.out.print("我：");
               totalFlag=false;
               NewQuestion=scanner.nextLine();
-              System.out.println(NewQuestion);
               // 构建鉴权url
               String authUrl = getAuthUrl(hostUrl, apiKey, apiSecret);
               OkHttpClient client = new OkHttpClient.Builder().build();
