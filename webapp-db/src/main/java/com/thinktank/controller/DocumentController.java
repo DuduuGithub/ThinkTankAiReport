@@ -1,4 +1,4 @@
-package com.thinktank.controller;//Mamba out
+package com.thinktank.controller;
 
 import com.thinktank.service.DocumentService;
 import com.thinktank.db.vo.Document;
