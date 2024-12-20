@@ -3,13 +3,22 @@ package com.thinktank.service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.File;
 
-import com.thinktank.db.dao.proxy.DocumentDao;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 
+import com.thinktank.db.dao.proxy.impl.DocumentDaoImpl;
 
 public class PdfTools {
+    /*
+     * 用途：获取目标pdf的输入流
+     * 参数：报告的id
+     * 返回值：一个输入流
+     */
     public static InputStream getPdfInputStream(int fileId){
-        InputStream pdfInputStream = LiteratureDAOProxy.getPdfInputStream(fileId);
+        DocumentDaoImpl documentDaoImpl = new DocumentDaoImpl();
+        InputStream pdfInputStream = documentDaoImpl.getPdfInputStream(fileId);
         return pdfInputStream;
     }
     public static String encodePdfToBase64(InputStream pdfInputStream) throws IOException {

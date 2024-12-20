@@ -2,13 +2,15 @@ package main.java.com.thinktank.controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse;
 
 import com.thinktank.service.PdfTools;
 
 public class PdfViewerControlle {
-    public static void pdfViewer(HttpServletRequest request,HttpServletResponse response){
+    public static void pdfViewer(HttpServletRequest request,HttpServletResponse response) throws IOException{
         // 获取请求的文件的id
         String fileIdParam = request.getParameter("fileId");
         if (fileIdParam == null || fileIdParam.isEmpty()) {
