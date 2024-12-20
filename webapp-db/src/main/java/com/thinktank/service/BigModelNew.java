@@ -55,19 +55,20 @@ public class BigModelNew extends WebSocketListener {
       while (true){
           if(totalFlag){
             Scanner scanner = new Scanner(System.in, "GBK");
-              System.out.print("我：");
-              totalFlag=false;
-              NewQuestion=scanner.nextLine();
-              // 构建鉴权url
-              String authUrl = getAuthUrl(hostUrl, apiKey, apiSecret);
-              OkHttpClient client = new OkHttpClient.Builder().build();
-              String url = authUrl.toString().replace("http://", "ws://").replace("https://", "wss://");
-              Request request = new Request.Builder().url(url).build();
-              for (int i = 0; i < 1; i++) {
-                  totalAnswer="";
-                  WebSocket webSocket = client.newWebSocket(request, new BigModelNew(i + "",
-                          false));
-              }
+            System.out.print("我：");
+            totalFlag=false;
+            NewQuestion=scanner.nextLine();
+            // 构建鉴权url
+            String authUrl = getAuthUrl(hostUrl, apiKey, apiSecret);
+            OkHttpClient client = new OkHttpClient.Builder().build();
+            String url = authUrl.toString().replace("http://", "ws://").replace("https://", "wss://");
+            Request request = new Request.Builder().url(url).build();
+            for (int i = 0; i < 1; i++) {
+                totalAnswer="";
+                WebSocket webSocket = client.newWebSocket(request, new BigModelNew(i + "",
+                        false));
+            }
+            scanner.close();
           }else{
               Thread.sleep(200);
           }
