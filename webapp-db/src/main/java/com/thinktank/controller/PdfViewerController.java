@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.thinktank.service.PdfTools;
 
-public class PdfViewerControlle {
+public class PdfViewerController {
     public static void pdfViewer(HttpServletRequest request,HttpServletResponse response) throws IOException{
         // 获取请求的文件的id
         String fileIdParam = request.getParameter("fileId");
