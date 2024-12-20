@@ -4,7 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.thinktank.db.dao.proxy.LiteratureDAOProxy;
+import com.thinktank.db.dao.proxy.DocumentDao;
+
 
 public class PdfTools {
     public static InputStream getPdfInputStream(int fileId){
