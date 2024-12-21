@@ -21,6 +21,10 @@ public class PdfTools {
         InputStream pdfInputStream = documentDaoImpl.getPdfInputStream(fileId);
         return pdfInputStream;
     }
+
+    /*
+     * 暂时无用
+     */
     public static String encodePdfToBase64(InputStream pdfInputStream) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
@@ -38,7 +42,7 @@ public class PdfTools {
      * 参数：pdf文件的输入流
      * 返回值：一个包含pdf所有文字的字符串
      */
-    public static String readPdfContent(InputStream inputStream){
+    public static String getPdfContent(InputStream inputStream){
         try {
             PDDocument document = PDDocument.load(inputStream);// 加载 PDF 文档
             
@@ -60,7 +64,7 @@ public class PdfTools {
      * 参数：一个表示pdf路径的字符串
      * 返回值：一个包含pdf所有文字的字符串
      */
-    public static String readPdfContent(String pdfFilePath){
+    public static String getPdfContent(String pdfFilePath){
         try {
             File file = new File(pdfFilePath);
             PDDocument document = PDDocument.load(file);

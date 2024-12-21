@@ -24,7 +24,7 @@ public class BigModelNew extends WebSocketListener {
 
     public static final Gson gson = new Gson();
 
-    private static Boolean wsCloseFlag; // WebSocket关闭标志
+    private static Boolean wsCloseFlag=false; // WebSocket关闭标志
     private static String totalAnswer = ""; // 大模型的答案汇总
 
     // 线程来发送音频与参数

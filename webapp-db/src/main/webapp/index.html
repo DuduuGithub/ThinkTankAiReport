@@ -153,25 +153,9 @@
 			
 			// 获取输入框的值
 			var searchQuery = document.getElementsByClassName('input')[0].value;
-			// 创建一个新的 XMLHttpRequest 对象
-			var xhr = new XMLHttpRequest();
-
-			// 配置请求类型（GET 或 POST），URL 以及是否异步
-			xhr.open('POST', 'your-server-endpoint', true);
-
-			// 设置请求头部，如果发送的是JSON数据
-			xhr.setRequestHeader('Content-Type', 'application/json');
-
-			// 定义当请求状态改变时的回调函数
-			xhr.onreadystatechange = function () {
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					sessionStorage.setItem('searchResult',xhr.responseText);
-					window.location.href('chooseText.html');
-				}
-			};
-
-			// 发送请求，并附带输入框的值作为请求体
-			xhr.send(JSON.stringify({ query: searchQuery }));
+			
+			sessionStorage.setItem('searchQuery', JSON.stringify(searchQuery));
+			location.href = 'chooseText.html';
 		});
 
 	</script>

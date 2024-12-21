@@ -210,10 +210,14 @@
         });
   
         const selectSimilar = $('#selectSimilar').is(':checked');
+        const selectAll = $('#selectAll').is(':checked');
+        const searchQuery = JSON.parse(sessionStorage.getItem('searchQuery'));
   
         const postData = {
           ids: selectedIds,
-          similar: selectSimilar
+          similar: selectSimilar,
+          all:selectAll,
+          searchQuery: searchQuery
         };
   
         try {

@@ -112,6 +112,22 @@
           <div class="row">
             <div class="col-md-12">
               <button class="btn btn-primary" id="add-report">添加报告</button>
+
+              <!-- 模态框触发按钮 -->
+              <button class="btn btn-primary" id="openModalBtn">一键上传文件</button>
+
+              <!-- 模态框结构 -->
+              <div id="myModal" class="modal">
+                <!-- 模态框内容 -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" />
+                    <input type="submit" value="一键上传报告" />
+                  </form>
+                </div>
+              </div>
+
               <div class="search-bar">
                 <input type="text" id="doi-search" placeholder="请输入DOI号..." />
                 <input type="text" id="title-search" placeholder="请输入标题..." />
@@ -157,6 +173,56 @@
         location.href = 'addText.html';
       });
 
+      // 获取模态框元素
+      var modal = document.getElementById("myModal");
+
+      // 获取用于打开模态框的按钮
+      var btn = document.getElementById("openModalBtn");
+
+      // 获取关闭模态框的<span>元素
+      var span = document.getElementsByClassName("close")[0];
+
+      // 当用户点击按钮时，打开模态框
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      // 当用户点击<x>时，关闭模态框
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      // 当用户点击模态框外部时，关闭模态框
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      // 阻止表单默认提交行为，并使用 fetch API 发送请求
+      document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // 阻止默认提交行为
+
+        const formData = new FormData(this); // 创建FormData对象并填充表单数据
+
+        fetch(this.action, { // 使用fetch API进行文件上传
+          method: 'POST',
+          body: formData,
+        })
+          .then(response => response.json()) // 假设后端返回JSON格式的数据
+          .then(data => {
+            console.log('Success:', data);
+            alert('文件上传成功');
+            modal.style.display = "none"; // 成功后关闭模态框
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert('文件上传失败');
+          });
+      });
+
+      
+
       document.getElementById('search-btn').addEventListener('click', function () {
         var doi = document.getElementById('doi-search').value.trim();
         var title = document.getElementById('title-search').value.trim();
@@ -193,7 +259,28 @@
         if (event.target.closest('form[action="deleteServlet"]')) {
           event.preventDefault(); // 阻止默认行为
           if (confirm('确定要删除吗？')) {
-            event.target.submit(); // 如果用户确认，则提交表单
+            fetch('/api/deleteReport', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: `id=${id}`
+            })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.text();
+              })
+              .then(message => {
+                alert(message);
+                // 刷新页面或从DOM中移除已删除的项
+                window.location.reload();
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                alert('发生错误，请稍后再试。');
+              });
           }
         }
       });
@@ -258,7 +345,7 @@
           editButton.addEventListener('click', function (event) {
             event.preventDefault(); // 阻止默认的表单提交行为
 
-            // 获取员工ID
+            // 获取ID
             const id = this.getAttribute('data-id');
             console.log(id);
 

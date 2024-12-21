@@ -1,4 +1,4 @@
-package main.java.com.thinktank.controller;
+package com.thinktank.controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
