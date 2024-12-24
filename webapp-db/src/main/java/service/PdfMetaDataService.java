@@ -13,23 +13,35 @@ import db.vo.Document;
 
 public class PdfMetaDataService {
     @SuppressWarnings("rawtypes")
-    public static void main(String[] args) throws Exception {
-        String filePath = "D:/郭如璇的文件/200大二上/马原/马原论文/AI能否产生真正的意识_—...个马克思主义哲学的分析视角_王亚萍.pdf";
-        File file = new File(filePath);
-        PDDocument document = PDDocument.load(file);
+    // public static void main(String[] args) throws Exception {
+    //     String filePath = "D:/郭如璇的文件/200大二上/马原/马原论文/AI能否产生真正的意识_—...个马克思主义哲学的分析视角_王亚萍.pdf";
+    //     File file = new File(filePath);
+    //     PDDocument document = PDDocument.load(file);
 
-        // 使用PDFTextStripper提取文本
-        PDFTextStripper stripper = new PDFTextStripper();
-        String text = stripper.getText(document);
+    //     // 使用PDFTextStripper提取文本
+    //     PDFTextStripper stripper = new PDFTextStripper();
+    //     String text = stripper.getText(document);
 
-        // Map map = getMetaDataMap(text);
-        // System.out.println(map.get("title"));
-        // System.out.println(map.get("keywords"));
-        // System.out.println(map.get("subject"));
-    }
+    //     // Map map = getMetaDataMap(text);
+    //     // System.out.println(map.get("title"));
+    //     // System.out.println(map.get("keywords"));
+    //     // System.out.println(map.get("subject"));
+    // }
 
-    public static Document getDocument(){
+    @SuppressWarnings("rawtypes")
+    public static Document getDocument(InputStream pdfInputStream) throws Exception {
+        // 获取pdf的各个字段
+        Map metaDataMap = PdfMetaDataService.getPdfMetaData(pdfInputStream);
 
+        String title = (String) metaDataMap.get("title");
+        String keywords = (String) metaDataMap.get("keywords");
+        String subject = (String) metaDataMap.get("subject");
+        String content = (String) metaDataMap.get("content");
+        InputStream pdfFile  =  (InputStream) metaDataMap.get("pdfFile");
+
+        Document document = new Document();
+
+        return document;
     }
 
     /*
@@ -42,7 +54,8 @@ public class PdfMetaDataService {
         String pdfContent = PdfTools.getPdfContent(pdfInputStream);
 
         // 调用大模型获得结果
-        String result = BigModelNew.askQuestion(pdfContent + "。" + "请你给出以上文章的标题（title），关键词（文章自带的关键词,keywords），主题词（根据文章内容生成的主题词，subject），返回的形式为一个形如{\"title\":\"value1\", \"keywords\":\"value2\", \"subject\":\"value3\"}的json字符串");
+        String result = BigModelNew.askQuestion(pdfContent + "。"
+                + "请你给出以上文章的标题（title），关键词（文章自带的关键词,keywords），主题词（根据文章内容生成的主题词，subject），返回的形式为一个形如{\"title\":\"value1\", \"keywords\":\"value2\", \"subject\":\"value3\"}的json字符串");
 
         // 截取result中的json字符串
         String jsonString = result = result.substring(result.indexOf('{'), result.lastIndexOf('}') + 1);
@@ -54,7 +67,7 @@ public class PdfMetaDataService {
         Map<String, Object> map = gson.fromJson(jsonString, Map.class);
 
         map.put("content", pdfContent);
-        map.put("pdfFile",pdfInputStream);
+        map.put("pdfFile", pdfInputStream);
 
         System.out.println(map);
 

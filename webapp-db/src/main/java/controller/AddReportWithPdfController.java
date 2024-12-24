@@ -28,9 +28,7 @@ public class AddReportWithPdfController {
             // 获取文件输入流
             InputStream pdfInputStream = filePart.getInputStream();
 
-            // 获取pdf的各个字段
-            Map metaDataMap = PdfMetaDataService.getPdfMetaData(pdfInputStream);
-
+            // 获取
             Document document = new Document();
 
             // 返回响应
