@@ -1,22 +1,20 @@
 package controller;
 
 import java.io.InputStream;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import db.vo.Document;
-import service.PdfMetaDataService;
 
 /*
  * 用途：用户通过表单传入一个pdf文件，通过调用大模型获得这个pdf的各个字段，并把这个报告存入数据库
  * 参数：request里面需要有pdf文件
  */
 public class AddReportWithPdfController {
-    @SuppressWarnings({ "rawtypes", "unused" })
-    public static void addReportWithPdf(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @SuppressWarnings({ "unused" })
+    public static void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 设置响应类型为 JSON 格式
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

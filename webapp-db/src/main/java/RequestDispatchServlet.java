@@ -36,14 +36,13 @@ public class RequestDispatchServlet extends HttpServlet {
         // 获取请求路径
         String path = request.getRequestURI();
 
+        // 取出请求的方法字符串
         int index = path.lastIndexOf("/");
         path = path.substring(index);
 
-        response.getWriter().println(path);
-
         switch (path) {
             case "/login":
-                LoginController.login(request, response);
+                LoginController.processRequest(request, response);
                 break;
             //case "/"
             default:

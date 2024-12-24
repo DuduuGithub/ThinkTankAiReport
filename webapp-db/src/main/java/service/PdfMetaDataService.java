@@ -1,33 +1,13 @@
 package service;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.Map;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
 
 import com.google.gson.Gson;
 
 import db.vo.Document;
 
 public class PdfMetaDataService {
-    @SuppressWarnings("rawtypes")
-    // public static void main(String[] args) throws Exception {
-    //     String filePath = "D:/郭如璇的文件/200大二上/马原/马原论文/AI能否产生真正的意识_—...个马克思主义哲学的分析视角_王亚萍.pdf";
-    //     File file = new File(filePath);
-    //     PDDocument document = PDDocument.load(file);
-
-    //     // 使用PDFTextStripper提取文本
-    //     PDFTextStripper stripper = new PDFTextStripper();
-    //     String text = stripper.getText(document);
-
-    //     // Map map = getMetaDataMap(text);
-    //     // System.out.println(map.get("title"));
-    //     // System.out.println(map.get("keywords"));
-    //     // System.out.println(map.get("subject"));
-    // }
-
     @SuppressWarnings("rawtypes")
     public static Document getDocument(InputStream pdfInputStream) throws Exception {
         // 获取pdf的各个字段
