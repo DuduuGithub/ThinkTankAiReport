@@ -34,22 +34,18 @@ public class RequestDispatchServlet extends HttpServlet {
     private void dispatch(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         // 获取请求路径
-        String path = request.getPathInfo();
-        if (path == null || path.equals("/")) {
-            path = "/home"; // 默认路径
-        }
+        String path = request.getRequestURI();
+
+        int index = path.lastIndexOf("/");
+        path = path.substring(index);
+
+        response.getWriter().println(path);
 
         switch (path) {
             case "/login":
                 LoginController.login(request, response);
                 break;
-            // case "/logout":
-            //     LoginController.handleLogout(request, response);
-            //     break;
-            // case "/home":
-            //     HomeController.showHome(request, response);
-            //     break;
-            // 处理其他路径
+            //case "/"
             default:
                 response.getWriter().println(path);
                 break;

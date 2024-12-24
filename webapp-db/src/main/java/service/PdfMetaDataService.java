@@ -9,6 +9,8 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import com.google.gson.Gson;
 
+import db.vo.Document;
+
 public class PdfMetaDataService {
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) throws Exception {
@@ -20,10 +22,14 @@ public class PdfMetaDataService {
         PDFTextStripper stripper = new PDFTextStripper();
         String text = stripper.getText(document);
 
-        Map map = getMetaDataMap(text);
-        System.out.println(map.get("title"));
-        System.out.println(map.get("keywords"));
-        System.out.println(map.get("subject"));
+        // Map map = getMetaDataMap(text);
+        // System.out.println(map.get("title"));
+        // System.out.println(map.get("keywords"));
+        // System.out.println(map.get("subject"));
+    }
+
+    public static Document getDocument(){
+
     }
 
     /*
@@ -52,28 +58,6 @@ public class PdfMetaDataService {
 
         System.out.println(map);
 
-        return map;
-    }
-
-    /*
-     * 用途：用途本类的getPdfMetaData方法获取元数据
-     * 参数：字符串——pdf的内容、
-     * 返回：Map，包含pdf的
-     */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected static Map getMetaDataMap(String pdfContent) throws Exception {
-
-        // 调用大模型获得结果
-        String result = BigModelNew.askQuestion(pdfContent + "。" + "请你给出以上文章的标题（title），关键词（文章自带的关键词,keywords），主题词（根据文章内容生成的主题词，subject），返回的形式为一个形如{\"title\":\"value1\", \"keywords\":\"value2\", \"subject\":\"value3\"}的json字符串");
-
-        // 获得结果中的json字符串
-        String jsonString = result = result.substring(result.indexOf('{'), result.lastIndexOf('}') + 1);
-
-        // 创建Gson对象，用于把json字符串转换为Map
-        Gson gson = new Gson();
-
-        // 将json字符串转换为Map
-        Map<String, Object> map = gson.fromJson(jsonString, Map.class);
         return map;
     }
 }

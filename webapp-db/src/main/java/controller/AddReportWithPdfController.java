@@ -16,7 +16,11 @@ import service.PdfMetaDataService;
  */
 public class AddReportWithPdfController {
     @SuppressWarnings({ "rawtypes", "unused" })
-    public static void addTextWithPdf(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public static void addReportWithPdf(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // 设置响应类型为 JSON 格式
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
         Part filePart = request.getPart("pdfFile");
         if (filePart != null) {
             // 获取原始文件名
@@ -26,7 +30,6 @@ public class AddReportWithPdfController {
 
             // 获取pdf的各个字段
             Map metaDataMap = PdfMetaDataService.getPdfMetaData(pdfInputStream);
-            // ----------------------------------------------------------------------------需要加上对应的用户id，这个等到会话写完再说
 
             Document document = new Document();
 
