@@ -122,7 +122,7 @@
                                 <!-- 模态框内容 -->
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
-                                    <form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">
+                                    <form id="uploadForm" action="app/loadPdf" method="post" enctype="multipart/form-data">
                                         <input type="file" name="file" />
                                         <input type="submit" value="一键上传报告" />
                                     </form>
@@ -210,16 +210,35 @@
                     method: 'POST',
                     body: formData,
                 })
-                    .then(response => response.json()) // 假设后端返回JSON格式的数据
-                    .then(data => {
-                        console.log('Success:', data);
-                        alert('文件上传成功');
-                        modal.style.display = "none"; // 成功后关闭模态框
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                        alert('文件上传失败');
+                .then(response => {
+                    console.log('Response status:', response.status); // 添加状态码日志
+                    console.log('Response headers:', response.headers); // 添加响应头日志
+                    
+                    // 先检查响应文本
+                    return response.text().then(text => {
+                        console.log('Raw response:', text); // 添加原始响应日志
+                        try {
+                            return JSON.parse(text); // 尝试解析JSON
+                        } catch (e) {
+                            console.error('JSON解析错误:', e);
+                            throw new Error('服务器响应格式错误');
+                        }
                     });
+                })
+                .then(data => {
+                    console.log('Parsed data:', data); // 添加解析后的数据日志
+                    if (data.success) {
+                        alert(data.message);
+                        modal.style.display = "none";
+                    } else {
+                        alert(data.message || '上传失败');
+                    }
+                })
+                .catch((error) => {
+                    console.error('详细错误信息:', error);
+                    console.error('错误堆栈:', error.stack);
+                    alert('上传失败: ' + error.message);
+                });
             });
 
 

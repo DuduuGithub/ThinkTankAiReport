@@ -24,6 +24,7 @@ service\AddReportService.class
 service\BigModelNew$MyThread.class
 service\BigModelNew$JsonParse.class
 db\factory\DaoFactory.class
+controller\AddReportController.class
 controller\PdfViewerController.class
 db\dao\proxy\impl\UserDaoImpl.class
 service\BigModelNew$Header.class
