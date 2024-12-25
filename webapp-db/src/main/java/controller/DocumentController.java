@@ -1,7 +1,7 @@
 package controller;
 
 import service.DocumentService;
-import db.vo.Document;
+import db.vo.DocumentVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class DocumentController {
             int documentId = Integer.parseInt(documentIdParam);
 
             // 2. 调用业务层获取文档详情
-            Document document = documentService.getDocumentById(Integer.valueOf(documentId));
+            DocumentVO document = documentService.getDocumentById(Integer.valueOf(documentId));
 
             if (document == null) {
                 // 文档不存在，返回错误信息

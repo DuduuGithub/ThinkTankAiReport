@@ -9,7 +9,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import com.google.gson.Gson;
 
-import db.vo.Document;
+import db.entity.Document;
 
 public class PdfMetaDataService {
     @SuppressWarnings("rawtypes")
@@ -28,8 +28,8 @@ public class PdfMetaDataService {
         // System.out.println(map.get("subject"));
     }
 
-    public static Document getDocument(){
-
+    public static Document getDocument(Map<String, Object> metaData) {
+        
     }
 
     /*

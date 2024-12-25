@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import db.vo.Document;
+import db.vo.DocumentVO;
 import service.PdfMetaDataService;
 
 /*
@@ -31,7 +31,7 @@ public class AddReportWithPdfController {
             // 获取pdf的各个字段
             Map metaDataMap = PdfMetaDataService.getPdfMetaData(pdfInputStream);
 
-            Document document = new Document();
+            DocumentVO document = new DocumentVO();
 
             // 返回响应
             response.getWriter().println("文件上传成功: " + fileName);

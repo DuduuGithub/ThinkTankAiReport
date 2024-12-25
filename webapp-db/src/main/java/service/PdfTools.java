@@ -8,7 +8,8 @@ import java.io.File;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-import db.dao.proxy.impl.DocumentDaoImpl;
+import db.dao.proxy.PdfDao;
+import db.factory.DaoFactory;
 
 public class PdfTools {
     /*
@@ -17,9 +18,8 @@ public class PdfTools {
      * 返回值：一个输入流
      */
     public static InputStream getPdfInputStream(int fileId){
-        DocumentDaoImpl documentDaoImpl = new DocumentDaoImpl();
-        InputStream pdfInputStream = documentDaoImpl.getPdfInputStream(fileId);
-        return pdfInputStream;
+        PdfDao pdfDao = DaoFactory.createPdfDao();
+        return pdfDao.getPdfInputStream(fileId);
     }
 
     /*

@@ -1,7 +1,8 @@
 package service;
 
-import db.dao.proxy.impl.UserDaoImpl;
-import db.vo.User;
+import db.dao.proxy.UserDao;
+import db.entity.User;
+import db.factory.DaoFactory;
 
 public class UserVerifyService {
 
@@ -15,20 +16,15 @@ public class UserVerifyService {
         // 把字符串userId转化为整数形式
         int userId = Integer.parseInt(userIdString);
 
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
-        User queryResult = userDaoImpl.findById(userId);
+        UserDao userDao = DaoFactory.createUserDao();
+        User queryResult = userDao.findById(userId);
 
         if(queryResult == null){
             return false;
         }
         else{
             String rightPassword = queryResult.getPassword();
-            if(password.equals(rightPassword)){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return password.equals(rightPassword);
         }
     }
 }

@@ -1,13 +1,11 @@
 package db.dao.proxy;
 
-import db.vo.User;
+import db.entity.User;
 import java.util.List;
 
 /**
- * UserDao接口定义了用户数据访问层的基本操作方法。
- * 包括增删改查和获取所有用户。
+ * UserDao接口定义了用户相关的数据库操作方法
  */
-
 public interface UserDao {
     /**
      * 插入新用户数据
