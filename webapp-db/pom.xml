@@ -103,6 +103,7 @@
             <artifactId>HikariCP</artifactId>
             <version>4.0.3</version>
         </dependency>
+<<<<<<< HEAD
 
         <!-- 添加Java基础依赖 -->
         <dependency>
@@ -111,6 +112,9 @@
             <version>8.0</version>
             <scope>provided</scope>
         </dependency>
+=======
+        
+>>>>>>> 9f9516f970af0fd72bbd30766d63c91d3e9334ab
 </dependencies>
 
 <repositories>

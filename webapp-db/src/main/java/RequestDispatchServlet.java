@@ -1,14 +1,17 @@
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.AddReportWithPdfController;
 import controller.LoginController;
 
 @WebServlet("/app/*")
+@MultipartConfig  // 添加这个注解来支持文件上传
 public class RequestDispatchServlet extends HttpServlet {
     
     @Override
@@ -36,16 +39,17 @@ public class RequestDispatchServlet extends HttpServlet {
         // 获取请求路径
         String path = request.getRequestURI();
 
+        // 取出请求的方法字符串
         int index = path.lastIndexOf("/");
         path = path.substring(index);
 
-        response.getWriter().println(path);
-
         switch (path) {
             case "/login":
-                LoginController.login(request, response);
+                LoginController.processRequest(request, response);
                 break;
-            //case "/"
+            case "/loadPdf":
+                AddReportWithPdfController.processRequest(request, response);
+                break;
             default:
                 response.getWriter().println(path);
                 break;

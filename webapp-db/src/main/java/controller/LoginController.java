@@ -14,7 +14,7 @@ public class LoginController {
      * 用途：处理用户登录请求
      * 参数：请求中需要有用户的userId和password
      */
-    public static void login(HttpServletRequest request,HttpServletResponse response) throws Exception{
+    public static void processRequest(HttpServletRequest request,HttpServletResponse response) throws Exception{
         // 获取用户名和密码
         String userId = request.getParameter("userId");
         String password = request.getParameter("password");

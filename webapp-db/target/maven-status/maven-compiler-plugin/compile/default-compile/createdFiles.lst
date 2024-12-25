@@ -29,7 +29,21 @@ service\EssayRecommendService.class
 service\UserVerifyService.class
 RequestDispatchServlet.class
 service\PdfMetaDataService.class
+<<<<<<< HEAD
 db\exception\DatabaseException.class
+=======
+service\PdfTools.class
+controller\Override.class
+service\AiReportService.class
+db\vo\User.class
+service\AddReportService.class
+service\BigModelNew$MyThread.class
+service\BigModelNew$JsonParse.class
+db\factory\DaoFactory.class
+controller\AddReportController.class
+controller\PdfViewerController.class
+db\dao\proxy\impl\UserDaoImpl.class
+>>>>>>> 9f9516f970af0fd72bbd30766d63c91d3e9334ab
 service\BigModelNew$Header.class
 service\AiReportService.class
 service\BigModelNew$MyThread.class
