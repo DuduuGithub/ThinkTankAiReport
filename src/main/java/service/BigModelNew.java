@@ -82,6 +82,14 @@ public class BigModelNew extends WebSocketListener {
             }
         }
     }
+    public static void main(String[] args) {
+        try {
+            askQuestion("man");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
     // 用于外部调用的接口方法
     public static String askQuestion(String question) throws Exception {

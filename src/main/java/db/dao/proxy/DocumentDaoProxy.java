@@ -15,7 +15,7 @@ public class DocumentDaoProxy {
     }
 
     // 代理搜索文档的逻辑
-    public List<Document> searchDocuments(String userId, String title, String keywords, String subject) {
+    public List<Document> searchDocuments(int userId, String title, String keywords, String subject) {
         // 过滤查询条件为空的情况
         if (title == null) title = "";
         if (keywords == null) keywords = "";

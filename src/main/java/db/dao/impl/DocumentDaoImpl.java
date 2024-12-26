@@ -18,7 +18,7 @@ import java.util.List;
  public class DocumentDaoImpl implements DocumentDao {
 
     // 高级搜索文档：根据标题、关键词、主题和内容进行筛选
-    public List<Document> searchDocuments(String userId, String title, String keywords, String subject) {
+    public List<Document> searchDocuments(int userId, String title, String keywords, String subject) {
         StringBuilder sql = new StringBuilder("SELECT * FROM document WHERE user_id = ?");
         
         // 动态添加搜索条件

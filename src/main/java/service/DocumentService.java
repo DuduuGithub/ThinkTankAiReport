@@ -17,7 +17,7 @@ public class DocumentService {
     }
 
     // 高级搜索：根据用户ID和搜索条件返回匹配的文档列表
-    public List<Document> searchDocuments(String userId, String title, String keywords, String subject) {
+    public List<Document> searchDocuments(int userId, String title, String keywords, String subject) {
         return documentDaoProxy.searchDocuments(userId, title, keywords, subject);
     }
 }

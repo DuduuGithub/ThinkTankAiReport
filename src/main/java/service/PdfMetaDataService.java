@@ -19,7 +19,7 @@ public class PdfMetaDataService {
         String content = (String) metaDataMap.get("content");
 
         // 把数据打包入一个Document对象并返回
-        Document document = new Document(title,keywords,subject,content,userId,pdfInputStream);
+        Document document = new Document(title, keywords, subject, content, userId, pdfInputStream);
 
         return document;
     }
