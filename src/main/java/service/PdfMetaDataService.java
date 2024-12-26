@@ -9,7 +9,7 @@ import db.vo.Document;
 
 public class PdfMetaDataService {
     @SuppressWarnings("rawtypes")
-    public static Document getDocument(InputStream pdfInputStream) throws Exception {
+    public static Document getDocument(InputStream pdfInputStream, int userId) throws Exception {
         // 获取pdf的各个字段
         Map metaDataMap = PdfMetaDataService.getPdfMetaData(pdfInputStream);
 
@@ -17,9 +17,9 @@ public class PdfMetaDataService {
         String keywords = (String) metaDataMap.get("keywords");
         String subject = (String) metaDataMap.get("subject");
         String content = (String) metaDataMap.get("content");
-        InputStream pdfFile  =  (InputStream) metaDataMap.get("pdfFile");
 
-        Document document = new Document();
+        // 把数据打包入一个Document对象并返回
+        Document document = new Document(title,keywords,subject,content,userId,pdfInputStream);
 
         return document;
     }

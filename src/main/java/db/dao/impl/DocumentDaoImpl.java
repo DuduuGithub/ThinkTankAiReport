@@ -67,18 +67,18 @@ import java.util.List;
 
     @Override
     public void insert(Document document) {
-        String sql = "INSERT INTO document (document_id, title, keywords, subject, content, user_id) " +
+        String sql = "INSERT INTO document (title, keywords, subject, content, user_id, pdf_File) " +
                      "VALUES (?, ?, ?, ?, ?, ?)";
         Connection conn = null;
         try {
             conn = DBUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, document.getDocumentId());
-            pstmt.setString(2, document.getTitle());
-            pstmt.setString(3, document.getKeywords());
-            pstmt.setString(4, document.getSubject());
-            pstmt.setString(5, document.getContent());
-            pstmt.setInt(6, document.getUserId());
+            pstmt.setString(1, document.getTitle());
+            pstmt.setString(2, document.getKeywords());
+            pstmt.setString(3, document.getSubject());
+            pstmt.setString(4, document.getContent());
+            pstmt.setInt(5, document.getUserId());
+            pstmt.setBinaryStream(6, document.getPdfFile());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

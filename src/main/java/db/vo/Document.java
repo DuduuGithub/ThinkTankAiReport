@@ -3,7 +3,7 @@ package db.vo;
 import java.io.InputStream;
 
 /**
- * Paper类表示论文实体，对应数据库中的paper表。
+ * Document类表示论文实体，对应数据库中的document表。
  * 包含论文ID、标题、关键词、主题、内容、所属用户ID，以及PDF文件数据等信息。
  */
 public class Document {
@@ -18,7 +18,7 @@ public class Document {
     // 无参构造函数
     public Document() {}
 
-    // 含参构造函数，用于快速构建Paper对象
+    // 含参构造函数，用于快速构建document对象
     public Document(Integer documentId, String title, String keywords, String subject, String content, Integer userId) {
         this.documentId = documentId;
         this.title = title;
@@ -26,6 +26,18 @@ public class Document {
         this.subject = subject;
         this.content = content;
         this.userId = userId;
+    }
+
+    /*
+     * 用途：用于根据除documentId之外的字段构造document对象
+     */
+    public Document(String title, String keywords, String subject, String content, Integer userId, InputStream pdfFile){
+        this.title = title;
+        this.keywords = keywords;
+        this.subject = subject;
+        this.content = content;
+        this.userId = userId;
+        this.pdfFile = pdfFile;
     }
 
     // Getter和Setter方法

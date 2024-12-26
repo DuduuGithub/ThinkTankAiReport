@@ -19,15 +19,15 @@ public class LoginController {
         if (UserVerifyService.userVerify(userId, password)) {
             // 认证成功，设置会话属性
             HttpSession session = request.getSession();
-            session.setAttribute("userId", userId);
+            session.setAttribute("userId", Integer.parseInt(userId));
             // 设置会话过期时间（例如 30 分钟）
             session.setMaxInactiveInterval(30 * 60);
             // 重定向到首页
-            response.sendRedirect("/abc/index.html");
+            response.sendRedirect("/aireport/index.html");
         } else {
             // 认证失败，重定向回登录页面并添加错误参数
             //response.getWriter().println(userId + '\n' + password);
-            response.sendRedirect("/abc/login.html?error=1");
+            response.sendRedirect("/aireport/login.html?error=1");
         }
     }
 }
